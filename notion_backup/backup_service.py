@@ -119,8 +119,9 @@ class BackupService:
 
 @click.command()
 @click.option("--output-dir", default=".", help="Where the zip export will be saved")
-@click.option("--config-file", help="Path to the configuration file")
+@click.option("--config-file",default="./notion-backup-src/notion_backup/notion_backup.conf", help="Path to the configuration file")
 def main(output_dir, config_file):
+    print(Path(config_file).absolute)
     output_dir_path = Path(output_dir)
     print(f"Backup Notion workspace into directory {output_dir_path.resolve()}")
     backup_service = BackupService(output_dir_path, config_file)
